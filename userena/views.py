@@ -584,6 +584,7 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
     extra_context['profile'] = profile
     return ExtraContextTemplateView.as_view(template_name=template_name,
                                             extra_context=extra_context)(request)
+@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
 def profile_detail(
     request, username,
     template_name=userena_settings.USERENA_PROFILE_DETAIL_TEMPLATE,
